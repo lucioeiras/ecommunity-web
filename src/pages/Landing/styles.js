@@ -33,13 +33,11 @@ export const Tabs = styled.div`
       color: #3A3A3A;
     }
   }
-
-  > button {
-
-  }
 `
 
 export const CTA = styled(Link)`
+  cursor: pointer;
+
   height: 48px;
 
   display: flex;
