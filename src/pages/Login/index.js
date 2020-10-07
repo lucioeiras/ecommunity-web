@@ -2,7 +2,6 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 import firebase from 'firebase/app'
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import logo from '../../assets/logo.svg'
 import googleIcon from '../../assets/google.svg'
