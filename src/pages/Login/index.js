@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 
 import logo from '../../assets/logo.svg'
 import googleIcon from '../../assets/google.svg'
-import facebookIcon from '../../assets/facebook.svg'
+import twitterIcon from '../../assets/twitter.svg'
 import notebookImg from '../../assets/notebook.png'
 
 import { 
@@ -24,19 +24,25 @@ export default function Login() {
 
   const history = useHistory()
 
+  async function findIfUserExists() {
+    const query = await usersRef
+        .where('email', '==', auth.currentUser.email)
+        .get()
+
+    const user = query.docs[0]
+
+    return user
+  }
+
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     await auth.signInWithPopup(provider);
 
     if (auth.currentUser) {
-      const query = await usersRef
-        .where('uid', '==', auth.currentUser.uid)
-        .get()
-
-      const user = query.docs[0]
+      const user = await findIfUserExists()
 
       if (!user) {
-        await usersRef.add({
+        await usersRef.doc(auth.currentUser.uid).set({
           name: auth.currentUser.displayName,
           email: auth.currentUser.email,
           uid: auth.currentUser.uid,
@@ -47,6 +53,13 @@ export default function Login() {
       history.push(`/dashboard/${auth.currentUser.uid}`)
     }
   }
+
+  // async function signInWithTwitter() {
+  //   const provider = new firebase.auth.TwitterAuthProvider()
+  //   await auth.signInWithPopup(provider)
+
+  //   console.log(auth.currentUser)
+  // }
 
   return (
     <Container>
@@ -71,9 +84,9 @@ export default function Login() {
               Entrar com o Google
             </button>
 
-            <button className="facebook">
-              <img src={facebookIcon} alt="Facebook" /> 
-              Entrar com o facebook
+            <button className="twitter">
+              <img src={twitterIcon} alt="Twitter" /> 
+              Entrar com o Twitter
             </button>
           </Buttons>
         </Presentation>

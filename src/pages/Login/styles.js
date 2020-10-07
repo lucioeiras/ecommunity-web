@@ -77,12 +77,12 @@ export const Buttons = styled.div`
     }
   }
 
-  > .facebook {
-    background: #3B589D;
+  > .twitter {
+    background: #00ACEE;
     transition: background-color 0.2s;
 
     &:hover {
-      background: #273965;
+      background: #0582B3;
     }
   }
 `
