@@ -1,4 +1,8 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
+
+import firebase from 'firebase/app'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import logo from '../../assets/logo.svg'
 import googleIcon from '../../assets/google.svg'
@@ -14,6 +18,37 @@ import {
 } from './styles'
 
 export default function Login() {
+  const auth = firebase.auth()
+
+  const firestore = firebase.firestore()
+  const usersRef = firestore.collection('users')
+
+  const history = useHistory()
+
+  async function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
+
+    if (auth.currentUser) {
+      const query = await usersRef
+        .where('uid', '==', auth.currentUser.uid)
+        .get()
+
+      const user = query.docs[0]
+
+      if (!user) {
+        await usersRef.add({
+          name: auth.currentUser.displayName,
+          email: auth.currentUser.email,
+          uid: auth.currentUser.uid,
+          avatar: auth.currentUser.photoURL
+        })
+      }
+  
+      history.push(`/dashboard/${auth.currentUser.uid}`)
+    }
+  }
+
   return (
     <Container>
       <Header>
@@ -29,7 +64,10 @@ export default function Login() {
           </p>
 
           <Buttons>
-            <button className="google">
+            <button 
+              className="google" 
+              onClick={signInWithGoogle}
+            >
               <img src={googleIcon} alt="Google" />
               Entrar com o Google
             </button>
