@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.svg'
 import phoneImg from '../../assets/phone.png'
@@ -23,7 +24,7 @@ export default function Landing() {
           <a href="teste">Contato</a>
           <a href="teste">Aplicativo</a>
 
-          <CTA href="teste">Entrar</CTA>
+          <CTA to="/login">Entrar</CTA>
         </Tabs>
       </Header>
 
@@ -35,7 +36,7 @@ export default function Landing() {
             todos aqueles que amam eletrônica.
           </p>
 
-          <a href="teste">Comece a escrever</a>
+          <Link to="/login">Comece a escrever</Link>
         </Presentation>
 
         <img 

@@ -1,15 +1,12 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-  max-width: 1100px;
   height: 100vh;
-
   overflow: hidden;
 `
 
 export const Header = styled.header`
-  width: 1100px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -42,7 +39,7 @@ export const Tabs = styled.div`
   }
 `
 
-export const CTA = styled.a`
+export const CTA = styled(Link)`
   height: 48px;
 
   display: flex;
@@ -71,7 +68,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin-top: 72px;
+  margin-top: 96px;
 `
 
 export const Presentation = styled.div`
