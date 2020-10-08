@@ -34,10 +34,7 @@ export default function Login() {
     return user
   }
 
-  async function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
-
+  async function registerAndMoveFoward() {
     if (auth.currentUser) {
       const user = await findIfUserExists()
 
@@ -54,12 +51,19 @@ export default function Login() {
     }
   }
 
-  // async function signInWithTwitter() {
-  //   const provider = new firebase.auth.TwitterAuthProvider()
-  //   await auth.signInWithPopup(provider)
+  async function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
 
-  //   console.log(auth.currentUser)
-  // }
+    registerAndMoveFoward()
+  }
+
+  async function signInWithTwitter() {
+    const provider = new firebase.auth.TwitterAuthProvider()
+    await auth.signInWithPopup(provider)
+
+    registerAndMoveFoward()
+  }
 
   return (
     <Container>
@@ -84,7 +88,10 @@ export default function Login() {
               Entrar com o Google
             </button>
 
-            <button className="twitter">
+            <button 
+              className="twitter"
+              onClick={signInWithTwitter}
+            >
               <img src={twitterIcon} alt="Twitter" /> 
               Entrar com o Twitter
             </button>
