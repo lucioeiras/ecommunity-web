@@ -2,11 +2,19 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
+  width: 100vw;
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-x: hidden;
 `
 
 export const Header = styled.header`
-  width: 1100px;
+  width: 100%;
+  max-width: 1100px;
 
   display: flex;
   align-items: center;
@@ -90,10 +98,55 @@ export const CTA = styled(Link)`
   }
 `
 
-export const PostList = styled.div`
+export const Content = styled.div`
+  max-width: 1100px;
   margin-top: 64px;
+
+  > h1 {
+    color: #3a3a3a;
+    font-size: 32px;
+    font-weight: bold;
+  }
+`
+
+export const PostList = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  margin-top: 24px;  
 `
 
 export const Post = styled.div`
+  cursor: pointer;
 
+  width: 260px;
+  height: 260px;
+
+  display: flex;
+  align-items: flex-end;
+
+  border-radius: 5px;
+
+  background: ${
+    props => (`
+      linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 71.5%),
+      url(${props.background}) no-repeat center center / cover   
+    `)
+  }; 
+
+  padding: 16px;
+  margin-bottom: 24px;
+
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  > h2 {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 500;
+  }
 `

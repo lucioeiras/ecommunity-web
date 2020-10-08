@@ -9,6 +9,7 @@ import {
   Profile,
   Tabs,
   CTA,
+  Content,
   PostList,
   Post
 } from './styles'
@@ -38,35 +39,38 @@ export default function Dashboard() {
           </Profile>
 
           <Tabs>
-           <a href="teste">Sobre</a>
-           <a href="teste">Contato</a>
-           <a href="teste">Aplicativo</a>
+           <a href="teste">Relatar um problema</a>
+           <a href="teste">Como escrever</a>
 
-           <CTA to="/login">Entrar</CTA>
+           <CTA to="/write">Escrever</CTA>
          </Tabs>
         </Header>
-        
-        
 
-        <PostList>
+        <Content>
           <h1>Suas Histórias</h1>
 
-          <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-            <h2>Porque eu sou tão bonito?</h2>
-          </Post>
+          <PostList>
+            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
+              <h2>Porque eu sou tão bonito?</h2>
+            </Post>
 
-          <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-            <h2>Porque eu sou tão bonito?</h2>
-          </Post>
+            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
+              <h2>Porque eu sou tão bonito?</h2>
+            </Post>
 
-          <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-            <h2>Porque eu sou tão bonito?</h2>
-          </Post>
+            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
+              <h2>Porque eu sou tão bonito?</h2>
+            </Post>
 
-          <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-            <h2>Porque eu sou tão bonito?</h2>
-          </Post>
-        </PostList>
+            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
+              <h2>Porque eu sou tão bonito?</h2>
+            </Post>
+
+            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
+              <h2>Porque eu sou tão bonito?</h2>
+            </Post>
+          </PostList>
+        </Content>
         </>
       )}
     </Container>
