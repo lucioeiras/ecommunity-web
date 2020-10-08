@@ -54,7 +54,7 @@ Clone esse repositório com o comando:
 
 Vá para a pasta do projeto:
 ```
- ce ecommunity-web
+ cd ecommunity-web
 ```
 
 Instale todos as depêndencias:
