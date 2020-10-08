@@ -10,7 +10,7 @@
   <a href="#techs">Sobre</a> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
   <a href="#techs">Tecnologias</a> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
   <a href="#tools">Ferramentas</a> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
-  <a href="#use">Como usar</a> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
+  <a href="#use">Como usar</a> &nbsp;&nbsp;&nbsp; 
 </p>
 
 <br>
@@ -29,10 +29,13 @@ Você pode testar o site [aqui](https://).
 
 <h2 id="techs">🚀 Tecnologias </h2>
 
-Esse projeto foi desevolvido com as seguintes tecnologias:
+Esse projeto foi desevolvido com [ReactJS](https://reactjs.org/) e [Firebase](https://firebase.google.com/):
 
--  [ReactJS](https://reactjs.org/)
--  [Firebase](https://firebase.google.com/)
+<p align="center">
+  <a href="https://reactjs.org/" margin="48px"><img src="https://i.imgur.com/3V4pdSH.png" width="80px" /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://firebase.google.com/"><img src="https://cdn.freebiesupply.com/logos/large/2x/firebase-1-logo-png-transparent.png" width="58px" /></a>
+</p>
+
+
 
 <h2 id="tools">🛠 Ferramentas</h2>
 
