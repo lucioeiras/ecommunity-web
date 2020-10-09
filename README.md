@@ -27,6 +27,8 @@ O E-Community é uma comunidade com o objetivo de reunir todos aqueles que amam 
 Esse projeto foi desevolvido durante 1 ano para a PROJETE 2020, um evento da ETE FMC. 
 Você pode testar o site [aqui](https://).
 
+<br>
+
 <h2 id="techs">🚀 Tecnologias </h2>
 
 Esse projeto foi desevolvido com [ReactJS](https://reactjs.org/) e [Firebase](https://firebase.google.com/):
@@ -35,7 +37,7 @@ Esse projeto foi desevolvido com [ReactJS](https://reactjs.org/) e [Firebase](ht
   <a href="https://reactjs.org/" margin="48px"><img src="https://i.imgur.com/3V4pdSH.png" width="80px" /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href="https://firebase.google.com/"><img src="https://cdn.freebiesupply.com/logos/large/2x/firebase-1-logo-png-transparent.png" width="58px" /></a>
 </p>
 
-
+<br>
 
 <h2 id="tools">🛠 Ferramentas</h2>
 
@@ -44,6 +46,8 @@ Eu usei as seguintes ferramentas para desenvolver esse projeto:
 -  [WSL](https://docs.microsoft.com/pt-br/windows/wsl/install-win10)
 -  [VS Code](https://code.visualstudio.com/)
 -  [Figma](https://www.figma.com/ui-design-tool/)
+
+<br>
 
 <h2 id="use">📢 Como usar </h2>
 
@@ -70,6 +74,8 @@ Inicie o servidor de desenvolvimento:
 ```
 
 😀 Agora você já pode fazer suas alterações!
+  
+ <br> 
   
 <h1> </h1>
 
