@@ -50,24 +50,24 @@ export default function Dashboard() {
           <h1>Suas Histórias</h1>
 
           <PostList>
-            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-              <h2>Porque eu sou tão bonito?</h2>
+            <Post background="https://placehold.it/260">
+              <h2>Placeholder (building)</h2>
             </Post>
 
-            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-              <h2>Porque eu sou tão bonito?</h2>
+            <Post background="https://placehold.it/260">
+              <h2>Placeholder (building)</h2>
             </Post>
 
-            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-              <h2>Porque eu sou tão bonito?</h2>
+            <Post background="https://placehold.it/260">
+              <h2>Placeholder (building)</h2>
             </Post>
 
-            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-              <h2>Porque eu sou tão bonito?</h2>
+            <Post background="https://placehold.it/260">
+              <h2>Placeholder (building)</h2>
             </Post>
 
-            <Post background="https://avatars0.githubusercontent.com/u/67290471?s=460&u=3a40833b6b1e19b81017cb915f8af816f1e51ea7&v=4">
-              <h2>Porque eu sou tão bonito?</h2>
+            <Post background="https://placehold.it/260">
+              <h2>Placeholder (building)</h2>
             </Post>
           </PostList>
         </Content>
