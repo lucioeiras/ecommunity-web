@@ -20,9 +20,8 @@ export default function Landing() {
         <img src={logo} alt="E-Community" />
 
         <Tabs>
-          <a href="teste">Sobre</a>
-          <a href="teste">Contato</a>
-          <a href="teste">Aplicativo</a>
+          <a href="teste">Sobre o projeto</a>
+          <a href="teste">Como baixar o aplicativo</a>
 
           <CTA to="/login">Entrar</CTA>
         </Tabs>

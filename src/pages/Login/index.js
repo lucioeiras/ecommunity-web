@@ -18,8 +18,8 @@ import {
 
 export default function Login() {
   const auth = firebase.auth()
-
   const firestore = firebase.firestore()
+  
   const usersRef = firestore.collection('users')
 
   const history = useHistory()

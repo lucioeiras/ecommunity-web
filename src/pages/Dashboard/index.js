@@ -42,7 +42,7 @@ export default function Dashboard() {
            <a href="teste">Relatar um problema</a>
            <a href="teste">Como escrever</a>
 
-           <CTA to="/write">Escrever</CTA>
+          <CTA to={`/write/${user_id}`}>Escrever</CTA>
          </Tabs>
         </Header>
 

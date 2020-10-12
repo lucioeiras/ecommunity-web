@@ -59,7 +59,7 @@ export const Tabs = styled.div`
   align-items: center;
 
   > a {
-    color: #737380;
+    color: #A8A8B3;
     font-size: 16px;
     text-decoration: none;
 
