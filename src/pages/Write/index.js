@@ -73,6 +73,8 @@ export default function Write() {
       thumb: `thumbs/${thumb.name}`,
       archives: uploadedFiles.map(file => `files/${file.name}`),
     })
+
+    history.push(`/dashboard/${user_id}`)
   }
 
   return (
@@ -113,7 +115,7 @@ export default function Write() {
 
           <div>
             <label>Lista dos arquivos</label>
-            {!!thumb.name && <FileList files={uploadedFiles} />}
+            {!!uploadedFiles && <FileList files={uploadedFiles} />}
           </div>
         </UploadContainer>
 

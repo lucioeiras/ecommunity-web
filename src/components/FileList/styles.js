@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const Container = styled.ul`
-  height: 256px;
+  max-height: 256px;
 
   display: flex;
   flex-wrap: wrap;
+  align-content: space-between;
 
-  margin-top: 24px;
+  margin-top: 8px;
 
   > li {
     list-style: none;
     color: #444;
 
-    & + li {
-      margin-left: 16px;
-    }
+    margin: 0 16px 16px 0;
   }
 `;
 
