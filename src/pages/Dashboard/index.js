@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -16,14 +17,48 @@ import {
 
 export default function Dashboard() {
   const { user_id } = useParams()
+
   const [user, setUser] = useState()
+  const [posts, setPosts] = useState([])
 
   const firestore = firebase.firestore()
+  const storage = firebase.storage()
+
+  const postsRef = firestore.collection('posts')
+  const usersRef = firestore.collection('users')
+
+  function loadPosts() {
+    postsRef
+      .where('user_id', '==', user_id)
+      .orderBy('createdAt')
+      .get()
+      .then(async querySnapshot => {
+        const searchedPosts = []
+
+        querySnapshot.forEach(doc => {
+          searchedPosts.push(doc.data())
+        })
+
+        const postsWithImage = searchedPosts.map(post => {
+          const postWithImage = post
+
+          const thumbRef = storage.ref(post.thumb)
+          thumbRef.getDownloadURL().then(url => postWithImage.thumbURL = url)
+
+          return postWithImage
+        })
+    
+        setPosts(postsWithImage)
+      })
+  }
 
   useEffect(() => {
-    const usersRef = firestore.collection('users')
+    loadPosts()
+  }, [])
+
+  useEffect(() => {
     usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
-  }, [firestore, user_id])
+  }, [usersRef, firestore, user_id])
 
   return (
     <Container>
@@ -50,25 +85,11 @@ export default function Dashboard() {
           <h1>Suas Histórias</h1>
 
           <PostList>
-            <Post background="https://placehold.it/260">
-              <h2>Placeholder (building)</h2>
-            </Post>
-
-            <Post background="https://placehold.it/260">
-              <h2>Placeholder (building)</h2>
-            </Post>
-
-            <Post background="https://placehold.it/260">
-              <h2>Placeholder (building)</h2>
-            </Post>
-
-            <Post background="https://placehold.it/260">
-              <h2>Placeholder (building)</h2>
-            </Post>
-
-            <Post background="https://placehold.it/260">
-              <h2>Placeholder (building)</h2>
-            </Post>
+            {posts[0] && posts.map(post => (
+              <Post key={post.title} background={post.thumbURL}>
+                <h2>{post.title}</h2>
+              </Post>
+            ))}
           </PostList>
         </Content>
         </>

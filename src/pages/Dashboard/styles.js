@@ -2,19 +2,15 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-  width: 100vw;
+  max-width: 1100px;
   height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   overflow-x: hidden;
 `
 
 export const Header = styled.header`
   width: 100%;
-  max-width: 1100px;
+  width: 1100px;
 
   display: flex;
   align-items: center;
@@ -99,7 +95,6 @@ export const CTA = styled(Link)`
 `
 
 export const Content = styled.div`
-  max-width: 1100px;
   margin-top: 64px;
 
   > h1 {
@@ -111,7 +106,6 @@ export const Content = styled.div`
 
 export const PostList = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 
   margin-top: 24px;  
@@ -136,7 +130,7 @@ export const Post = styled.div`
   }; 
 
   padding: 16px;
-  margin-bottom: 24px;
+  margin: 0 16px 16px 0;
 
   transition: 0.3s;
 
