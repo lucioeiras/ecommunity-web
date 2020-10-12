@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import filesize from 'filesize'
 import firebase from 'firebase/app'
 
+import { uuid } from 'uuidv4'
 import { useHistory, useParams } from 'react-router-dom'
 
 import Upload from '../../components/Upload'
@@ -67,11 +68,13 @@ export default function Write() {
     })
 
     await postsRef.add({
+      uid: uuid(),
       user_id,
       title,
       text,
       thumb: `thumbs/${thumb.name}`,
       archives: uploadedFiles.map(file => `files/${file.name}`),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
     history.push(`/dashboard/${user_id}`)
