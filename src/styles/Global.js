@@ -16,6 +16,8 @@ export default createGlobalStyle`
 
     display: flex;
     justify-content: center;
+
+    overflow-x: hidden; 
   }
 
   *, body, button, input, textarea {

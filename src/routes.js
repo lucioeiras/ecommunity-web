@@ -12,7 +12,7 @@ export default function Routes() {
       <Route path="/" exact component={Landing} />
       <Route path="/login" component={Login} />
       <Route path="/dashboard/:user_id" component={Dashboard} />
-      <Route path="/write" component={Write} />
+      <Route path="/write/:user_id" component={Write} />
     </BrowserRouter>
   )
 }
