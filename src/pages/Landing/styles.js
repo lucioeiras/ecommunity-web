@@ -1,17 +1,24 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+import phoneImg from '../../assets/phone.png'
+
 export const Container = styled.div`
+  width: 100%;
+  max-width: 1148px;
+
   height: 100vh;
-  overflow: hidden;
+
+  background: url(${phoneImg}) no-repeat right 175px;
+  background-size: 34%;
+
+  padding: 48px;
 `
 
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  margin-top: 48px;
 `
 
 export const Tabs = styled.div`
@@ -51,7 +58,7 @@ export const CTA = styled(Link)`
   font-size: 20px !important;
   font-weight: bold;
 
-  padding: 12px 48px;
+  padding: 16px 48px;
 
   transition: background-color 0.2s !important;
 
@@ -61,23 +68,18 @@ export const CTA = styled(Link)`
 `
 
 export const Content = styled.div`
-  width: 1100px;
-
-  display: flex;
-  justify-content: space-between;
-
   margin-top: 96px;
-`
 
-export const Presentation = styled.div`
   > h1 {
+    max-width: 80%;
+
     color: #3a3a3a;
     font-size: 64px;
     font-weight: bold;
   }
 
   > p {
-    max-width: 560px;
+    max-width: 500px;
 
     color: #737380;
     font-size: 24px;

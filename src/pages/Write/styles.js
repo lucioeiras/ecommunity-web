@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding: 48px 0;
+  width: 100%;
+  max-width: 1148px;
+
+  padding: 48px;
 
   > h1 {
     color: #3A3A3A;
@@ -10,8 +13,6 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-  width: 1100px;
-
   display: flex;
   flex-direction: column;
 
@@ -58,7 +59,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #A8A8B3;
+    color: #A8A8A8;
   }
 `
 
@@ -85,7 +86,7 @@ export const Textarea = styled.textarea`
   }
 
   &::placeholder {
-    color: #A8A8B3;
+    color: #A8A8A8;
   }
 `
 
@@ -98,7 +99,7 @@ export const UploadContainer = styled.div`
     width: 500px;
     height: 300px;
 
-    margin: 32px 24px 0 0 ;
+    margin: 32px 24px 0 0;
 
     > label {
       color: #737380;

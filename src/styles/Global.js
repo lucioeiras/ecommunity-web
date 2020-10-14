@@ -8,16 +8,15 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
+  body, #root {
     width: 100vw;
     height: 100vh;
 
     background: #FAFAFA;
 
     display: flex;
-    justify-content: center;
-
-    overflow-x: hidden; 
+    flex-direction: column;
+    align-items: center;
   }
 
   *, body, button, input, textarea {

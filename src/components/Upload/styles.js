@@ -19,7 +19,7 @@ export const UploadMessage = styled.p`
   justify-content: center;
   align-items: center;
 
-  color: #A8A8B3;
+  color: #A8A8A8;
   font-size: 16px;
   text-align: center;
   line-height: 24px;

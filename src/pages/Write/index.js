@@ -95,15 +95,10 @@ export default function Write() {
           }}
         />
 
-        <label 
-          htmlFor="text"
-        >
-          Texto 
-          <span>Clique <a href="https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-markdown#open">aqui</a> para saber mais sobre Markdown</span>
-        </label>
+        <label htmlFor="text">Texto</label>
         <Textarea 
           name="text" 
-          placeholder="Seu texto em Markdown" 
+          placeholder="Escreva aqui o texto da sua postagem" 
           value={text}
           onChange={e => {
             setText(e.target.value)

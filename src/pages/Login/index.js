@@ -6,11 +6,9 @@ import firebase from 'firebase/app'
 import logo from '../../assets/logo.svg'
 import googleIcon from '../../assets/google.svg'
 import twitterIcon from '../../assets/twitter.svg'
-import notebookImg from '../../assets/notebook.png'
 
 import { 
   Container,
-  Header,
   Content,
   Presentation,
   Buttons,
@@ -67,9 +65,7 @@ export default function Login() {
 
   return (
     <Container>
-      <Header>
-        <img src={logo} alt="E-Community" />
-      </Header>
+      <img src={logo} alt="E-Community" />
       
       <Content>
         <Presentation>
@@ -97,13 +93,6 @@ export default function Login() {
             </button>
           </Buttons>
         </Presentation>
-
-        <img 
-          src={notebookImg} 
-          alt="Preview" 
-          height="60%"
-          width="60%"
-        />
       </Content>
     </Container>
   )

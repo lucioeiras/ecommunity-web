@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.svg'
-import phoneImg from '../../assets/phone.png'
 
 import { 
   Container,
@@ -10,7 +9,6 @@ import {
   Tabs,
   CTA,
   Content,
-  Presentation, 
 } from './styles'
 
 export default function Landing() {
@@ -28,22 +26,13 @@ export default function Landing() {
       </Header>
 
       <Content>
-        <Presentation>
-          <h1>Compartilhe seu conhecimento</h1>
-          <p>
-            O E-Community é uma comunidade com o objetivo de reunir 
-            todos aqueles que amam eletrônica.
-          </p>
+        <h1>Compartilhe seu conhecimento</h1>
+        <p>
+          O E-Community é uma comunidade com o objetivo de reunir 
+          todos aqueles que amam eletrônica.
+        </p>
 
-          <Link to="/login">Comece a escrever</Link>
-        </Presentation>
-
-        <img 
-          src={phoneImg} 
-          alt="Aplicativo do E-Community" 
-          height="34%" 
-          width="34%"
-        />
+        <Link to="/login">Comece a escrever</Link>
       </Content>
     </Container>
   )

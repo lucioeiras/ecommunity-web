@@ -35,17 +35,13 @@ export default function Dashboard() {
       .then(async querySnapshot => {
         const searchedPosts = []
 
-        querySnapshot.forEach(doc => {
-          searchedPosts.push(doc.data())
-        })
+        querySnapshot.forEach(doc => searchedPosts.push(doc.data()))
 
         const postsWithImage = searchedPosts.map(post => {
-          const postWithImage = post
-
           const thumbRef = storage.ref(post.thumb)
-          thumbRef.getDownloadURL().then(url => postWithImage.thumbURL = url)
+          thumbRef.getDownloadURL().then(url => post.thumbURL = url)
 
-          return postWithImage
+          return post
         })
     
         setPosts(postsWithImage)
@@ -58,7 +54,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
-  }, [usersRef, firestore, user_id])
+  }, [usersRef, user_id])
 
   return (
     <Container>

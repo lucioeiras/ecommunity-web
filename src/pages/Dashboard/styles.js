@@ -2,21 +2,16 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-  max-width: 1100px;
-  height: 100vh;
+  width: 100%;
+  max-width: 1148px;
 
-  overflow-x: hidden;
+  padding: 48px;
 `
 
 export const Header = styled.header`
-  width: 100%;
-  width: 1100px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  margin-top: 48px;
 `
 
 export const Profile = styled.div`

@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  height: 100vh;
-  max-width: 1100px;
-  overflow: hidden;
-`
+import notebookImg from '../../assets/notebook.png'
 
-export const Header = styled.header`
-  margin-top: 48px;
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1148px;
+
+  height: 100vh;
+
+  background: url(${notebookImg}) no-repeat right 50%;
+  background-size: 60%;
+
+  padding: 48px;
 `
 
 export const Content = styled.div`
