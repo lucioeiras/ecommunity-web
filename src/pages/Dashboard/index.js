@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import useQuery from '../../hooks/useQuery'
 
 import firebase from 'firebase/app'
 
@@ -16,7 +16,7 @@ import {
 } from './styles'
 
 export default function Dashboard() {
-  const { user_id } = useParams()
+  const { user_id } = useQuery.get('user')
 
   const [user, setUser] = useState()
   const [posts, setPosts] = useState([])
@@ -50,6 +50,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     loadPosts()
+    console.log('cheguei')
   }, [])
 
   useEffect(() => {

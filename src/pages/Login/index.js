@@ -45,7 +45,7 @@ export default function Login() {
         })
       }
   
-      history.push(`/dashboard/${auth.currentUser.uid}`)
+      history.push(`/dashboard/?user=${auth.currentUser.uid}`)
     }
   }
 

@@ -4,7 +4,9 @@ import filesize from 'filesize'
 import firebase from 'firebase/app'
 
 import { uuid } from 'uuidv4'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+
+import useQuery from '../../hooks/useQuery'
 
 import Upload from '../../components/Upload'
 import FileList from '../../components/FileList'
@@ -19,6 +21,8 @@ import {
 } from './styles'
 
 export default function Write() {
+  const { user_id } = useQuery.get('user')
+
   const firestore = firebase.firestore()
   const storage = firebase.storage()
 
@@ -31,7 +35,6 @@ export default function Write() {
   })
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
-  const { user_id } = useParams()
   const history = useHistory()
 
   function submitFile(files) {
