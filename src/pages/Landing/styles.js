@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import phoneImg from '../../assets/phone.png'
 
+// Container por volta da página
 export const Container = styled.div`
   width: 100%;
   max-width: 1148px;
@@ -15,12 +16,14 @@ export const Container = styled.div`
   padding: 48px;
 `
 
+// Cabeçalho com CTA e Tabs
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
 
+// Links para outras páginas
 export const Tabs = styled.div`
   display: flex;
   align-items: center;
@@ -42,6 +45,7 @@ export const Tabs = styled.div`
   }
 `
 
+// Botão para ir para a página de Login
 export const CTA = styled(Link)`
   cursor: pointer;
 
@@ -67,6 +71,7 @@ export const CTA = styled(Link)`
   }
 `
 
+// Container por volta do conteúdo da página
 export const Content = styled.div`
   margin-top: 96px;
 

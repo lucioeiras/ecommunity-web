@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react'
 import useQuery from '../../hooks/useQuery'
 
@@ -16,17 +17,23 @@ import {
 } from './styles'
 
 export default function Dashboard({ location }) {
+
+  // Localiza o query param "user" e pega seu valor
   const user_id = useQuery(location.search, 'user')
 
+  // Inicia os estados 
   const [user, setUser] = useState()
   const [posts, setPosts] = useState([])
 
+  // Inicializa as funções do Firebase
   const firestore = firebase.firestore()
   const storage = firebase.storage()
 
+  // Busca as coleções no Firestore
   const postsRef = firestore.collection('posts')
   const usersRef = firestore.collection('users')
 
+  // Busca os posts referentes ao usuários, e sua thumb no Cloud Storage
   function loadPosts() {
     postsRef
       .where('user_id', '==', user_id)
@@ -50,6 +57,7 @@ export default function Dashboard({ location }) {
       })
   }
 
+  // Executa as funções apenas na primeira renderização
   useEffect(() => {
     loadPosts()
   }, [])
@@ -58,6 +66,7 @@ export default function Dashboard({ location }) {
     usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
   }, [])
 
+  
   return (
     <Container>
       {user && (

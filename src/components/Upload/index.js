@@ -6,8 +6,13 @@ import addIcon from '../../assets/add-circle.svg'
 
 import { DropContainer, UploadMessage } from './styles';
 
+// Box para subir arquivos
 export default function Upload({ onUpload }) {
+
+  // Renderiza as mensagens que se adaptam conforme o comportamento do usuário
   function renderDragMessage(isDragActive, isDragRejest) {
+
+    // Mensagem padrão
     if (!isDragActive) {
       return (
         <UploadMessage>
@@ -17,10 +22,12 @@ export default function Upload({ onUpload }) {
       );
     }
 
+    // Mensagem se não for possível subir o arquivo
     if (isDragRejest) {
       return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
     }
 
+    // Mensagem quando o usuário estiver com o arquivo em cima da box
     return <UploadMessage type="success">Solte o arquivo aqui</UploadMessage>;
   }
 

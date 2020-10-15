@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+// Container por volta da página
 export const Container = styled.div`
   width: 100%;
   max-width: 1148px;
@@ -12,6 +13,7 @@ export const Container = styled.div`
   }
 `
 
+// Formulário de envio
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -38,6 +40,7 @@ export const Form = styled.form`
   }
 `
 
+// Caixa de texto para adicionar o título
 export const Input = styled.input`
   width: 500px;
   height: 48px;
@@ -63,6 +66,7 @@ export const Input = styled.input`
   }
 `
 
+// Caixa de texto maior, para adicionar o conteúdo do post
 export const Textarea = styled.textarea`
   width: 100%;
   height: 385px;
@@ -90,6 +94,7 @@ export const Textarea = styled.textarea`
   }
 `
 
+// Container por volta dos dois objetos de upload de arquivos
 export const UploadContainer = styled.div`
   display: flex;
   align-items: center;
@@ -109,6 +114,7 @@ export const UploadContainer = styled.div`
   }
 `
 
+// Botão para submeter o formulário
 export const Submit = styled.button`
   cursor: pointer;
 

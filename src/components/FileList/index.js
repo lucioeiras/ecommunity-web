@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Container, FileInfo } from './styles';
 
+// Lista de arquivos adicionados pelo usuário
 export default function FileList({ files }) {
   return (
     <Container>

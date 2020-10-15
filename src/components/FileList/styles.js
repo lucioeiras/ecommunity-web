@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// Container por volta da Lista de Arquivos
 export const Container = styled.ul`
   max-height: 256px;
 
@@ -17,6 +18,7 @@ export const Container = styled.ul`
   }
 `;
 
+// Nome/tamanho do arquivo
 export const FileInfo = styled.div`
   > div {
     display: flex;

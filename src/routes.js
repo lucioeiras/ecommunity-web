@@ -1,11 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 
+// Importação dos componentes das páginas
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Write from './pages/Write'
 
+// Componente que controla a rotas da aplicação
 export default function Routes() {
   return (
     <BrowserRouter>

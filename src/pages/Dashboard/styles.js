@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+// Container por volta da página
 export const Container = styled.div`
   width: 100%;
   max-width: 1148px;
@@ -8,12 +9,14 @@ export const Container = styled.div`
   padding: 48px;
 `
 
+// Caebçalho com o perfil do usuário e tabs
 export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
 `
 
+// Avatar/nome do usuário
 export const Profile = styled.div`
   display: flex;
   align-items: center;
@@ -45,6 +48,7 @@ export const Profile = styled.div`
   }
 `
 
+// Links para outra páginas
 export const Tabs = styled.div`
   display: flex;
   align-items: center;
@@ -66,6 +70,7 @@ export const Tabs = styled.div`
   }
 `
 
+// Call to Action - Botão para ir para a tela de escrita
 export const CTA = styled(Link)`
   height: 48px;
 
@@ -89,6 +94,7 @@ export const CTA = styled(Link)`
   }
 `
 
+// Container por volta do conteúdo da página
 export const Content = styled.div`
   margin-top: 64px;
 
@@ -99,6 +105,7 @@ export const Content = styled.div`
   }
 `
 
+// Lista de posts do usuário
 export const PostList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -106,6 +113,7 @@ export const PostList = styled.div`
   margin-top: 24px;  
 `
 
+// Post carregado do Firebase
 export const Post = styled.div`
   cursor: pointer;
 

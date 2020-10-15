@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
+// Cria configurações de estilo para todas as páginas
 export default createGlobalStyle`
   * {
     margin: 0;

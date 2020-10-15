@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import notebookImg from '../../assets/notebook.png'
 
+// Container por volta da página
 export const Container = styled.div`
   width: 100%;
   max-width: 1148px;
@@ -14,6 +15,7 @@ export const Container = styled.div`
   padding: 48px;
 `
 
+// Container por volta do conteúdo da página
 export const Content = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,6 +23,7 @@ export const Content = styled.div`
   margin-top: 64px;
 `
 
+// Textos de bem-vindo
 export const Presentation = styled.div`
   > h1 {
     color: #3a3a3a;
@@ -39,6 +42,7 @@ export const Presentation = styled.div`
   }
 `
 
+// Botões de Sign In
 export const Buttons = styled.div`
   max-width: 360px;
 

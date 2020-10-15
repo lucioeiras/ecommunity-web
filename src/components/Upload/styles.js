@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// Caixa de Upload
 export const DropContainer = styled.div`
   cursor: pointer;
 
@@ -13,6 +14,7 @@ export const DropContainer = styled.div`
   margin-top: 8px;
 `
 
+// Mensagem 
 export const UploadMessage = styled.p`
   display: flex;
   flex-direction: column;

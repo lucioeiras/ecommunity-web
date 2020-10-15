@@ -9,6 +9,8 @@ import Routes from './routes'
 import GlobalStyles from './styles/global'
 
 export default function App() {
+  
+  // Inicia a conexão do Firebase com as configurações no arquivo .env
   firebase.initializeApp({
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,

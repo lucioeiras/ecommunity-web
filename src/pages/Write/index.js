@@ -21,11 +21,15 @@ import {
 } from './styles'
 
 export default function Write({ location }) {
+
+  // Busca o usuário nos query params da página
   const user_id = useQuery(location.search, 'user')
 
+  // Inicia funções do Firebase
   const firestore = firebase.firestore()
   const storage = firebase.storage()
 
+  // Inicia os estados
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const [thumb, setThumb] = useState({
@@ -35,8 +39,10 @@ export default function Write({ location }) {
   })
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
+  // Inicia o objeto de navegação
   const history = useHistory()
 
+  // Função para adicionar arquivo na lista
   function submitFile(files) {
     const formatedFiles = files.map(file => ({
       file,
@@ -47,6 +53,7 @@ export default function Write({ location }) {
     setUploadedFiles([...uploadedFiles, ...formatedFiles])
   }
 
+  // Função para adicionar a Thumb do post
   function submitThumbnail(files) {
     const formatedFile = {
       file: files[0],
@@ -57,6 +64,7 @@ export default function Write({ location }) {
     setThumb(formatedFile)
   }
 
+  // Função executada ao submiter o formulário
   async function handleSubmit(e) {
     e.preventDefault()
 

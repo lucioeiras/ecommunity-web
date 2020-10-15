@@ -15,13 +15,18 @@ import {
 } from './styles'
 
 export default function Login() {
+
+  // Inicia funções do Firebase
   const auth = firebase.auth()
   const firestore = firebase.firestore()
   
+  // Busca a coleção de usuários no Firestore
   const usersRef = firestore.collection('users')
 
+  // Inicia objeto de navegação
   const history = useHistory()
 
+  // Função para verificar se o usuário já existe no Banco de Dados
   async function findIfUserExists() {
     const query = await usersRef
         .where('email', '==', auth.currentUser.email)
@@ -32,6 +37,7 @@ export default function Login() {
     return user
   }
 
+  // Função que registra/autentica o usuário e move ele pra próxima página
   async function registerAndMoveFoward() {
     if (auth.currentUser) {
       const user = await findIfUserExists()
@@ -49,6 +55,7 @@ export default function Login() {
     }
   }
 
+  // Função que chama o pop-up de login do Google
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     await auth.signInWithPopup(provider);
@@ -56,6 +63,7 @@ export default function Login() {
     registerAndMoveFoward()
   }
 
+  // Função que chama o pop-up de login do Twitter
   async function signInWithTwitter() {
     const provider = new firebase.auth.TwitterAuthProvider()
     await auth.signInWithPopup(provider)
