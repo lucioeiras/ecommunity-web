@@ -6,19 +6,21 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 import Routes from './routes'
-import GlobalStyles from './styles/Global'
+import GlobalStyles from './styles/global'
 
 export default function App() {
   firebase.initializeApp({
-    apiKey: "AIzaSyAoldte3KU26_gEEmX8YGme_3wukxIT-dA",
-    authDomain: "e-community-1485d.firebaseapp.com",
-    databaseURL: "https://e-community-1485d.firebaseio.com",
-    projectId: "e-community-1485d",
-    storageBucket: "e-community-1485d.appspot.com",
-    messagingSenderId: "765504482440",
-    appId: "1:765504482440:web:67ac6a3ab2a024a1a0833d",
-    measurementId: "G-C3SYPMPW9Z"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
   })
+
+  console.log(process.env.REACT_APP_FIREBASE_AUTH_DOMAIN)
 
   return (
     <>
