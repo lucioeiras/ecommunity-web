@@ -20,8 +20,6 @@ export default function App() {
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
   })
 
-  console.log(process.env.REACT_APP_FIREBASE_AUTH_DOMAIN)
-
   return (
     <>
       <GlobalStyles />

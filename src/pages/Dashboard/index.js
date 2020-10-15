@@ -15,8 +15,8 @@ import {
   Post
 } from './styles'
 
-export default function Dashboard() {
-  const { user_id } = useQuery.get('user')
+export default function Dashboard({ location }) {
+  const user_id = useQuery(location.search, 'user')
 
   const [user, setUser] = useState()
   const [posts, setPosts] = useState([])
@@ -39,8 +39,10 @@ export default function Dashboard() {
 
         const postsWithImage = searchedPosts.map(post => {
           const thumbRef = storage.ref(post.thumb)
-          thumbRef.getDownloadURL().then(url => post.thumbURL = url)
 
+          thumbRef.getDownloadURL().then(url => post.thumbUrl = url)
+          
+          console.log(post)
           return post
         })
     
@@ -50,12 +52,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     loadPosts()
-    console.log('cheguei')
   }, [])
 
   useEffect(() => {
     usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
-  }, [usersRef, user_id])
+  }, [])
 
   return (
     <Container>
@@ -74,7 +75,7 @@ export default function Dashboard() {
            <a href="teste">Relatar um problema</a>
            <a href="teste">Como escrever</a>
 
-          <CTA to={`/write/${user_id}`}>Escrever</CTA>
+          <CTA to={`/write/?user=${user_id}`}>Escrever</CTA>
          </Tabs>
         </Header>
 
@@ -82,8 +83,8 @@ export default function Dashboard() {
           <h1>Suas Histórias</h1>
 
           <PostList>
-            {posts[0] && posts.map(post => (
-              <Post key={post.title} background={post.thumbURL}>
+            {!!posts && posts.map(post => (
+              <Post key={post.title} background={post.thumbUrl}>
                 <h2>{post.title}</h2>
               </Post>
             ))}

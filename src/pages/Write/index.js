@@ -20,8 +20,8 @@ import {
   Submit,
 } from './styles'
 
-export default function Write() {
-  const { user_id } = useQuery.get('user')
+export default function Write({ location }) {
+  const user_id = useQuery(location.search, 'user')
 
   const firestore = firebase.firestore()
   const storage = firebase.storage()
@@ -76,7 +76,7 @@ export default function Write() {
       title,
       text,
       thumb: `thumbs/${thumb.name}`,
-      archives: uploadedFiles.map(file => `files/${file.name}`),
+      archives: uploadedFiles?.map(file => `files/${file.name}`),
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
