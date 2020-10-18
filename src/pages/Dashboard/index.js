@@ -81,13 +81,15 @@ export default function Dashboard({ location }) {
           <h1>Suas Histórias</h1>
 
           <PostList>
-            {posts[0] && posts.map(post => {
-
-              return (
-                <Post key={post.title} background={post.thumbURL}>
-                  <h2>{post.title}</h2>
-                </Post>
-            )})}
+            {posts[0] && posts.map(post => (
+              <Post 
+                key={post.uid} 
+                background={post.thumbURL}
+                to={`/write/?user=${user_id}&post=${post.uid}`}
+              >
+                <h2>{post.title}</h2>
+              </Post>
+            ))}
           </PostList>
         </Content>
         </>

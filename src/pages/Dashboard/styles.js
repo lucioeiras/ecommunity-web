@@ -114,7 +114,7 @@ export const PostList = styled.div`
 `
 
 // Post carregado do Firebase
-export const Post = styled.div`
+export const Post = styled(Link)`
   cursor: pointer;
 
   width: 260px;
@@ -131,6 +131,8 @@ export const Post = styled.div`
       url(${props.background}) no-repeat center center / cover   
     `)
   }; 
+
+  text-decoration: none;
 
   padding: 16px;
   margin: 0 16px 16px 0;

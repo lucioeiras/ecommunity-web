@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useState, useEffect } from 'react'
 
 import filesize from 'filesize'
 import firebase from 'firebase/app'
@@ -24,12 +26,17 @@ export default function Write({ location }) {
 
   // Busca o usuário nos query params da página
   const user_id = useQuery(location.search, 'user')
+  const post_id = useQuery(location.search, 'post')
 
   // Inicia funções do Firebase
   const firestore = firebase.firestore()
   const storage = firebase.storage()
 
+  const postsRef = firestore.collection('posts')
+
   // Inicia os estados
+  const [editedPost, setEditedPost] = useState(null)
+
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -64,11 +71,21 @@ export default function Write({ location }) {
     setThumb(formatedFile)
   }
 
+  async function handleSave(e) {
+    e.preventDefault()
+
+    await postsRef.doc(post_id).set({
+      ...editedPost,
+      title,
+      text,
+    })
+
+    history.goBack()
+  }
+
   // Função executada ao submiter o formulário
   async function handleSubmit(e) {
     e.preventDefault()
-
-    const postsRef = firestore.collection('posts')
 
     const thumbRef = storage.ref(`thumbs/${thumb.name}`)
     await thumbRef.put(thumb.file)
@@ -80,8 +97,10 @@ export default function Write({ location }) {
       fileRef.put(file.file)
     })
 
-    await postsRef.add({
-      uid: uuid(),
+    const uid = uuid()
+
+    await postsRef.doc(uid).set({
+      uid,
       user_id,
       title,
       text,
@@ -91,14 +110,29 @@ export default function Write({ location }) {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
-    history.push(`/dashboard/?user=${user_id}`)
+    history.goBack()
   }
+
+  // Verifica se é um post novo ou um post para ser editado
+  useEffect(() => {
+    if (post_id) {
+      postsRef.doc(post_id).get().then(doc => {
+        const post = doc.data()
+
+        setEditedPost(post)
+        setTitle(post.title)
+        setText(post.text)
+      })
+    }
+  }, [])
 
   return (
     <Container>
       <h1>Adicione uma história</h1>
 
-      <Form onSubmit={handleSubmit}>
+      <Form 
+        onSubmit={post_id ? handleSave : handleSubmit}
+      >
         <label htmlFor="title">Título</label>
         <Input 
           name="title" 
@@ -119,31 +153,35 @@ export default function Write({ location }) {
           }}
         />
 
-        <UploadContainer>
-          <div> 
-            <label>Arquivos</label>
-            <Upload onUpload={submitFile} />
-          </div>
+        {!post_id && (
+          <>
+          <UploadContainer>
+            <div> 
+              <label>Arquivos</label>
+              <Upload onUpload={submitFile} />
+            </div>
 
-          <div>
-            <label>Lista dos arquivos</label>
-            {!!uploadedFiles && <FileList files={uploadedFiles} />}
-          </div>
-        </UploadContainer>
+            <div>
+              <label>Lista dos arquivos</label>
+              {!!uploadedFiles && <FileList files={uploadedFiles} />}
+            </div>
+          </UploadContainer>
 
-        <UploadContainer>
-          <div>
-            <label>Imagem de destaque</label>
-            <Upload onUpload={submitThumbnail} />
-          </div>
-          
-          <div>
-            <label>Lista dos arquivos</label>
-            {!!thumb.name && <FileList files={[thumb]} />}
-          </div>
-        </UploadContainer>
+          <UploadContainer>
+            <div>
+              <label>Imagem de destaque</label>
+              <Upload onUpload={submitThumbnail} />
+            </div>
+            
+            <div>
+              <label>Lista dos arquivos</label>
+              {!!thumb.name && <FileList files={[thumb]} />}
+            </div>
+          </UploadContainer>
+          </>
+        )}
 
-        <Submit type="submit">Adicionar</Submit>
+        <Submit type="submit">{post_id ? 'Salvar' : 'Adicionar'}</Submit>
       </Form>
     </Container>
   )
