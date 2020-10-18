@@ -27,7 +27,6 @@ export default function Dashboard({ location }) {
 
   // Inicializa as funções do Firebase
   const firestore = firebase.firestore()
-  const storage = firebase.storage()
 
   // Busca as coleções no Firestore
   const postsRef = firestore.collection('posts')
@@ -39,21 +38,12 @@ export default function Dashboard({ location }) {
       .where('user_id', '==', user_id)
       .orderBy('createdAt')
       .get()
-      .then(async querySnapshot => {
+      .then(querySnapshot => {
         const searchedPosts = []
 
         querySnapshot.forEach(doc => searchedPosts.push(doc.data()))
 
-        const postsWithImage = searchedPosts.map(post => {
-          const thumbRef = storage.ref(post.thumb)
-
-          thumbRef.getDownloadURL().then(url => post.thumbUrl = url)
-          
-          console.log(post)
-          return post
-        })
-    
-        setPosts(postsWithImage)
+        setPosts(searchedPosts)
       })
   }
 
@@ -66,7 +56,6 @@ export default function Dashboard({ location }) {
     usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
   }, [])
 
-  
   return (
     <Container>
       {user && (
@@ -92,11 +81,13 @@ export default function Dashboard({ location }) {
           <h1>Suas Histórias</h1>
 
           <PostList>
-            {!!posts && posts.map(post => (
-              <Post key={post.title} background={post.thumbUrl}>
-                <h2>{post.title}</h2>
-              </Post>
-            ))}
+            {posts[0] && posts.map(post => {
+
+              return (
+                <Post key={post.title} background={post.thumbURL}>
+                  <h2>{post.title}</h2>
+                </Post>
+            )})}
           </PostList>
         </Content>
         </>

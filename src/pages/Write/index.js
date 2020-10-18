@@ -32,13 +32,13 @@ export default function Write({ location }) {
   // Inicia os estados
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [thumb, setThumb] = useState({
     file: '',
     name: '',
     readableSize: '',
   })
-  const [uploadedFiles, setUploadedFiles] = useState([]);
-
+  
   // Inicia o objeto de navegação
   const history = useHistory()
 
@@ -73,6 +73,8 @@ export default function Write({ location }) {
     const thumbRef = storage.ref(`thumbs/${thumb.name}`)
     await thumbRef.put(thumb.file)
 
+    const thumbURL = await thumbRef.getDownloadURL()
+
     uploadedFiles.forEach(file => {
       const fileRef = storage.ref(`files/${file.name}`)
       fileRef.put(file.file)
@@ -84,11 +86,12 @@ export default function Write({ location }) {
       title,
       text,
       thumb: `thumbs/${thumb.name}`,
+      thumbURL,
       archives: uploadedFiles?.map(file => `files/${file.name}`),
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
-    history.push(`/dashboard/${user_id}`)
+    history.push(`/dashboard/?user=${user_id}`)
   }
 
   return (
