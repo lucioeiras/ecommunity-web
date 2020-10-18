@@ -71,6 +71,7 @@ export default function Write({ location }) {
     setThumb(formatedFile)
   }
 
+  // Função para salvar o post editado
   async function handleSave(e) {
     e.preventDefault()
 
@@ -128,7 +129,7 @@ export default function Write({ location }) {
 
   return (
     <Container>
-      <h1>Adicione uma história</h1>
+      <h1>{post_id ? 'Edite a sua história' : 'Adicione uma história'}</h1>
 
       <Form 
         onSubmit={post_id ? handleSave : handleSubmit}
@@ -170,7 +171,10 @@ export default function Write({ location }) {
           <UploadContainer>
             <div>
               <label>Imagem de destaque</label>
-              <Upload onUpload={submitThumbnail} />
+              <Upload 
+                onUpload={submitThumbnail} 
+                acceptFiles="image/png, image/jpeg, image/jpg, .png, .jpeg, .jpg"
+              />
             </div>
             
             <div>
