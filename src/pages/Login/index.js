@@ -1,4 +1,6 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import firebase from 'firebase/app'
@@ -16,15 +18,15 @@ import {
 
 export default function Login() {
 
+  // Inicia objeto de navegação
+  const history = useHistory()
+
   // Inicia funções do Firebase
   const auth = firebase.auth()
   const firestore = firebase.firestore()
   
   // Busca a coleção de usuários no Firestore
   const usersRef = firestore.collection('users')
-
-  // Inicia objeto de navegação
-  const history = useHistory()
 
   // Função para verificar se o usuário já existe no Banco de Dados
   async function findIfUserExists() {
@@ -51,6 +53,7 @@ export default function Login() {
         })
       }
   
+      localStorage.setItem('user_id', auth.currentUser.uid)
       history.push(`/dashboard/?user=${auth.currentUser.uid}`)
     }
   }
@@ -70,6 +73,17 @@ export default function Login() {
 
     registerAndMoveFoward()
   }
+
+  useEffect(() => {
+
+    /* Verifica se o usuário já logou alguma vez, e redireciona-o 
+    automaticamente se já o tiver feito */
+    const user_id = localStorage.getItem('user_id')
+
+    if (user_id) {
+      history.push(`/dashboard/?user=${user_id}`)
+    }
+  }, [])
 
   return (
     <Container>
