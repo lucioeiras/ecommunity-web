@@ -25,7 +25,7 @@
 
 O E-Community é uma comunidade com o objetivo de reunir todos aqueles que amam eletrônica. 
 Esse projeto foi desevolvido durante 1 ano para a PROJETE 2020, um evento da ETE FMC. 
-Você pode testar o site [aqui](https://).
+Você pode testar o site [aqui](https://projete-ecommunity.netlify.app).
 
 <br>
 
