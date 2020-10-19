@@ -28,8 +28,8 @@ export default function Landing() {
       <Content>
         <h1>Compartilhe seu conhecimento</h1>
         <p>
-          O E-Community é uma comunidade com o objetivo de reunir 
-          todos aqueles que amam eletrônica.
+          Escreva o seu texto na nossa plataforma web para que todos que
+          tenham o aplicativo do E-Community possam ler e compartilhar. 
         </p>
 
         <Link to="/login">Comece a escrever</Link>

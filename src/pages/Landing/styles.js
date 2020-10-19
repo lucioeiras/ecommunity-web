@@ -76,7 +76,7 @@ export const Content = styled.div`
   margin-top: 96px;
 
   > h1 {
-    max-width: 80%;
+    max-width: 70%;
 
     color: #3a3a3a;
     font-size: 64px;
