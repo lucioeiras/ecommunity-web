@@ -107,6 +107,14 @@ export const Content = styled.div`
     font-size: 32px;
     font-weight: bold;
   }
+
+  > h3 {
+    color: #737380;
+    font-size: 24px;
+    font-weight: normal;
+
+    margin-top: 24px; 
+  }
 `
 
 // Lista de posts do usuário

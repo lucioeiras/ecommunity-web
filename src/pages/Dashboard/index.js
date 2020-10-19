@@ -81,17 +81,24 @@ export default function Dashboard({ location }) {
         <Content>
           <h1>Suas Histórias</h1>
 
-          <PostList>
-            {posts[0] && posts.map(post => (
-              <Post 
-                key={post.uid} 
-                background={post.thumbURL}
-                to={`/write/?user=${user_id}&post=${post.uid}`}
-              >
-                <h2>{post.title}</h2>
-              </Post>
-            ))}
-          </PostList>
+          {posts[0]
+            ? (
+              <PostList>
+                {posts[0] && posts.map(post => (
+                  <Post 
+                    key={post.uid} 
+                    background={post.thumbURL}
+                    to={`/write/?user=${user_id}&post=${post.uid}`}
+                  >
+                    <h2>{post.title}</h2>
+                  </Post>
+                ))}
+              </PostList>
+            )
+            : <h3>Parece que você ainda não tem nenhum texto. Clique no botão
+                acima e escreva um!
+              </h3>
+          }
         </Content>
         </>
       )}
