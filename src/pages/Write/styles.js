@@ -141,3 +141,36 @@ export const Submit = styled.button`
     background-color: #00903A;
   }
 `
+
+export const LinksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const AddLinkButton = styled.button`
+  cursor: pointer;
+
+  max-width: 250px;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 5px;
+  background: #00C14E;
+
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+
+  padding: 12px;
+  margin-top: 24px;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #00903A;
+  }
+`

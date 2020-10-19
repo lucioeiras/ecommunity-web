@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react'
 import filesize from 'filesize'
 import firebase from 'firebase/app'
 
-import { uuid } from 'uuidv4'
+import { v4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
 
 import useQuery from '../../hooks/useQuery'
@@ -20,6 +20,8 @@ import {
   Textarea,
   UploadContainer,
   Submit,
+  LinksContainer,
+  AddLinkButton,
 } from './styles'
 
 export default function Write({ location }) {
@@ -39,6 +41,7 @@ export default function Write({ location }) {
 
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
+  const [links, setLinks] = useState([''])
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [thumb, setThumb] = useState({
     file: '',
@@ -48,6 +51,19 @@ export default function Write({ location }) {
   
   // Inicia o objeto de navegação
   const history = useHistory()
+
+  // Função para atualizar um link específico na lista de links
+  function setLinkValue(position, value) {
+    const updatedLinks = links.map((link, index) => {
+      if (index === position) {
+        return value
+      }
+
+      return link
+    })
+
+    setLinks(updatedLinks)
+  }
 
   // Função para adicionar arquivo na lista
   function submitFile(files) {
@@ -84,6 +100,19 @@ export default function Write({ location }) {
     history.goBack()
   }
 
+  async function getFilesURL() {
+    const filesURL = uploadedFiles.map(async file => {
+      const fileRef = storage.ref(`files/${file.name}`)
+      await fileRef.put(file.file)
+        
+      const fileURL = await fileRef.getDownloadURL()
+    
+      return fileURL
+    })
+
+    return Promise.all(filesURL)
+  }
+
   // Função executada ao submiter o formulário
   async function handleSubmit(e) {
     e.preventDefault()
@@ -93,21 +122,23 @@ export default function Write({ location }) {
 
     const thumbURL = await thumbRef.getDownloadURL()
 
-    uploadedFiles.forEach(file => {
-      const fileRef = storage.ref(`files/${file.name}`)
-      fileRef.put(file.file)
-    })
-
-    const uid = uuid()
+    const uid = v4()
+    const filesURL = await getFilesURL()
 
     await postsRef.doc(uid).set({
       uid,
       user_id,
+
       title,
       text,
+      links,
+
       thumb: `thumbs/${thumb.name}`,
       thumbURL,
-      archives: uploadedFiles?.map(file => `files/${file.name}`),
+
+      files: uploadedFiles?.map(file => `files/${file.name}`),
+      filesURL,
+
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
@@ -123,6 +154,7 @@ export default function Write({ location }) {
         setEditedPost(post)
         setTitle(post.title)
         setText(post.text)
+        post.links && setLinks(post.links)
       })
     }
   }, [])
@@ -153,6 +185,25 @@ export default function Write({ location }) {
             setText(e.target.value)
           }}
         />
+
+        <label>Links</label>
+        <LinksContainer>
+          {links.map((link, index) => (
+            <Input 
+              key={index}
+              value={link} 
+              onChange={e => setLinkValue(index, e.target.value)} 
+              placeholder="Digite aqui um link da internet"
+            />
+          ))}
+
+          <AddLinkButton 
+            type="button" 
+            onClick={() => setLinks([...links, ''])}
+          >
+            + Adicionar Link
+          </AddLinkButton>
+        </LinksContainer>
 
         {!post_id && (
           <>
