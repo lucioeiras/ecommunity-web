@@ -8,8 +8,19 @@ export const Container = styled.div`
   padding: 48px;
 
   > h1 {
+    display: flex;
+    justify-content: space-between;
+
     color: #3A3A3A;
     font-weight: bold;
+
+    > span {
+      color: #A8A8B3;
+      font-size: 14px;
+      font-weight: lighter;
+
+      margin-top: 8px;
+    }
   }
 `
 
@@ -27,16 +38,6 @@ export const Form = styled.form`
 
     display: flex;
     justify-content: space-between;
-
-    > span {
-      color: #A8A8B3;
-      font-size: 12px;
-      font-weight: lighter;
-
-      > a {
-        color: #000;
-      }
-    }
   }
 `
 

@@ -161,7 +161,10 @@ export default function Write({ location }) {
 
   return (
     <Container>
-      <h1>{post_id ? 'Edite a sua história' : 'Adicione uma história'}</h1>
+      <h1>
+        {post_id ? 'Edite a sua história' : 'Adicione uma história'}
+        <span>Os campos de título, texto e imagem de destaque são obrigatórios</span>
+      </h1>
 
       <Form 
         onSubmit={post_id ? handleSave : handleSubmit}
