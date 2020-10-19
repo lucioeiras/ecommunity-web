@@ -17,9 +17,13 @@ export const Header = styled.header`
 `
 
 // Avatar/nome do usuário
-export const Profile = styled.div`
+export const Profile = styled(Link)`
+  cursor: pointer;
+
   display: flex;
   align-items: center;
+
+  text-decoration: none;
 
   > img {
     width: 48px;

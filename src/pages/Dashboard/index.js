@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import useQuery from '../../hooks/useQuery'
 
 import firebase from 'firebase/app'
@@ -61,7 +62,7 @@ export default function Dashboard({ location }) {
       {user && (
         <>
         <Header>
-          <Profile>
+          <Profile to="/building">
             <img src={user.avatar} alt={user.name} />
             <h3>
               {user.name}
@@ -70,8 +71,8 @@ export default function Dashboard({ location }) {
           </Profile>
 
           <Tabs>
-           <a href="teste">Relatar um problema</a>
-           <a href="teste">Como escrever</a>
+           <Link to="/building">Relatar um problema</Link>
+           <Link to="/building">Como escrever</Link>
 
           <CTA to={`/write/?user=${user_id}`}>Escrever</CTA>
          </Tabs>
