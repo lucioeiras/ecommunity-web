@@ -1,20 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import useQuery from '../../hooks/useQuery'
 
 import firebase from 'firebase/app'
 
+import Header from '../../components/Header'
+
 import { 
-  Container, 
-  Header,
-  Profile,
-  Tabs,
-  CTA,
+  Container,
   Content,
   PostList,
-  Post
+  Post,
 } from './styles'
 
 export default function Dashboard({ location }) {
@@ -22,8 +19,7 @@ export default function Dashboard({ location }) {
   // Localiza o query param "user" e pega seu valor
   const user_id = useQuery(location.search, 'user')
 
-  // Inicia os estados 
-  const [user, setUser] = useState()
+  // Inicia os estados
   const [posts, setPosts] = useState([])
 
   // Inicializa as funções do Firebase
@@ -31,7 +27,6 @@ export default function Dashboard({ location }) {
 
   // Busca as coleções no Firestore
   const postsRef = firestore.collection('posts')
-  const usersRef = firestore.collection('users')
 
   // Busca os posts referentes ao usuários, e sua thumb no Cloud Storage
   function loadPosts() {
@@ -53,30 +48,19 @@ export default function Dashboard({ location }) {
     loadPosts()
   }, [])
 
-  useEffect(() => {
-    usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
-  }, [])
-
   return (
     <Container>
-      {user && (
+      {user_id && (
         <>
-        <Header>
-          <Profile to="/building">
-            <img src={user.avatar} alt={user.name} />
-            <h3>
-              {user.name}
-              <span>Clique para ver seu perfil</span>
-            </h3>
-          </Profile>
-
-          <Tabs>
-           <Link to="/building">Relatar um problema</Link>
-           <Link to="/building">Como escrever</Link>
-
-          <CTA to={`/write/?user=${user_id}`}>Escrever</CTA>
-         </Tabs>
-        </Header>
+        <Header
+          isLanding={false}
+          user_id={user_id}
+          button={{ name: 'Escrever', link: `/write/?user=${user_id}`}}
+          tabs={[
+            { name: 'Página Inicial', link: '/' },
+            { name: 'Relatar um problema', link: '/building' }
+          ]}
+        />
 
         <Content>
           <h1>Suas Histórias</h1>

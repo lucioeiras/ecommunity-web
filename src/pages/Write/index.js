@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom'
 
 import useQuery from '../../hooks/useQuery'
 
+import Header from '../../components/Header'
 import Upload from '../../components/Upload'
 import FileList from '../../components/FileList'
 
@@ -161,6 +162,16 @@ export default function Write({ location }) {
 
   return (
     <Container>
+      <Header
+        isLanding={false}
+        user_id={user_id}
+        button={{ name: 'Voltar', link: `/dashboard/?user=${user_id}`}}
+        tabs={[
+          { name: 'Como escrever', link: '/building' },
+          { name: 'Relatar um problema', link: '/building' }
+        ]}
+      />
+
       <h1>
         {post_id ? 'Edite a sua história' : 'Adicione uma história'}
         <span>Os campos de título, texto e imagem de destaque são obrigatórios</span>

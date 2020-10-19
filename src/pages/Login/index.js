@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom'
 
 import firebase from 'firebase/app'
 
-import logo from '../../assets/logo.svg'
+import Header from '../../components/Header'
+
 import googleIcon from '../../assets/google.svg'
 import twitterIcon from '../../assets/twitter.svg'
 
@@ -87,7 +88,14 @@ export default function Login() {
 
   return (
     <Container>
-      <img src={logo} alt="E-Community" />
+      <Header
+        isLanding={true}
+        button={{ name: 'Voltar', link: '/' }}
+        tabs={[
+          { name: 'Sobre o projeto', link: '/building' },
+          { name: 'Como baixar o aplicativo', link: '/building' }
+        ]}
+      />
       
       <Content>
         <Presentation>
