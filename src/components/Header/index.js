@@ -20,7 +20,6 @@ export default function Header({ isLanding, tabs, button, user_id }) {
   const usersRef = firestore.collection('users')
 
   useEffect(() => {
-    console.log(isLanding)
     user_id && usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
   }, [])
 
@@ -43,7 +42,9 @@ export default function Header({ isLanding, tabs, button, user_id }) {
       }
 
       <Tabs>
-        {tabs[0] && tabs.map(tab => <Link to={tab.link}>{tab.name}</Link>)}
+        {tabs[0] && tabs.map((tab, index) => 
+          <Link key={index} to={tab.link}>{tab.name}</Link>
+        )}
 
         <CTA to={button.link}>{button.name}</CTA>
       </Tabs>

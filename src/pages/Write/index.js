@@ -26,18 +26,14 @@ import {
 } from './styles'
 
 export default function Write({ location }) {
-
-  // Busca o usuário nos query params da página
-  const user_id = useQuery(location.search, 'user')
+  const user_id = localStorage.getItem('user_id')
   const post_id = useQuery(location.search, 'post')
 
-  // Inicia funções do Firebase
   const firestore = firebase.firestore()
   const storage = firebase.storage()
 
   const postsRef = firestore.collection('posts')
 
-  // Inicia os estados
   const [editedPost, setEditedPost] = useState(null)
 
   const [title, setTitle] = useState('')
@@ -50,10 +46,8 @@ export default function Write({ location }) {
     readableSize: '',
   })
   
-  // Inicia o objeto de navegação
   const history = useHistory()
 
-  // Função para atualizar um link específico na lista de links
   function setLinkValue(position, value) {
     const updatedLinks = links.map((link, index) => {
       if (index === position) {
@@ -66,7 +60,6 @@ export default function Write({ location }) {
     setLinks(updatedLinks)
   }
 
-  // Função para adicionar arquivo na lista
   function submitFile(files) {
     const formatedFiles = files.map(file => ({
       file,
@@ -77,7 +70,6 @@ export default function Write({ location }) {
     setUploadedFiles([...uploadedFiles, ...formatedFiles])
   }
 
-  // Função para adicionar a Thumb do post
   function submitThumbnail(files) {
     const formatedFile = {
       file: files[0],
@@ -88,7 +80,6 @@ export default function Write({ location }) {
     setThumb(formatedFile)
   }
 
-  // Função para salvar o post editado
   async function handleSave(e) {
     e.preventDefault()
 
@@ -114,7 +105,6 @@ export default function Write({ location }) {
     return Promise.all(filesURL)
   }
 
-  // Função executada ao submiter o formulário
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -146,7 +136,6 @@ export default function Write({ location }) {
     history.goBack()
   }
 
-  // Verifica se é um post novo ou um post para ser editado
   useEffect(() => {
     if (post_id) {
       postsRef.doc(post_id).get().then(doc => {

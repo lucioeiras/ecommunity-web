@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import firebase from 'firebase/app'
+import { AuthContext } from '../../contexts/Auth'
 
 import Header from '../../components/Header'
 
@@ -16,76 +16,32 @@ import {
   Presentation,
   Buttons,
 } from './styles'
+import { useEffect } from 'react'
 
 export default function Login() {
+  const { 
+    handleSignInWithGoogle, 
+    handleSignInWithTwitter 
+  } = useContext(AuthContext)
 
-  // Inicia objeto de navegação
   const history = useHistory()
 
-  // Inicia funções do Firebase
-  const auth = firebase.auth()
-  const firestore = firebase.firestore()
-  
-  // Busca a coleção de usuários no Firestore
-  const usersRef = firestore.collection('users')
+  async function handleLogin(provider) {
+    provider === 'google' 
+      ? await handleSignInWithGoogle() 
+      : await handleSignInWithTwitter()
 
-  // Função para verificar se o usuário já existe no Banco de Dados
-  async function findIfUserExists() {
-    const query = await usersRef
-        .where('email', '==', auth.currentUser.email)
-        .get()
-
-    const user = query.docs[0]
-
-    return user
-  }
-
-  // Função que registra/autentica o usuário e move ele pra próxima página
-  async function registerAndMoveFoward() {
-    if (auth.currentUser) {
-      const user = await findIfUserExists()
-
-      if (!user) {
-        await usersRef.doc(auth.currentUser.uid).set({
-          name: auth.currentUser.displayName,
-          email: auth.currentUser.email,
-          uid: auth.currentUser.uid,
-          avatar: auth.currentUser.photoURL
-        })
-      }
-  
-      localStorage.setItem('user_id', auth.currentUser.uid)
-      history.push(`/dashboard/?user=${auth.currentUser.uid}`)
-    }
-  }
-
-  // Função que chama o pop-up de login do Google
-  async function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
-
-    registerAndMoveFoward()
-  }
-
-  // Função que chama o pop-up de login do Twitter
-  async function signInWithTwitter() {
-    const provider = new firebase.auth.TwitterAuthProvider()
-    await auth.signInWithPopup(provider)
-
-    registerAndMoveFoward()
+    history.push('/dashboard')
   }
 
   useEffect(() => {
-
-    /* Verifica se o usuário já logou alguma vez, e redireciona-o 
-    automaticamente se já o tiver feito */
     const user_id = localStorage.getItem('user_id')
 
     if (user_id) {
-      history.push(`/dashboard/?user=${user_id}`)
+      history.push('/dashboard')
     }
   }, [])
-
+ 
   return (
     <Container>
       <Header
@@ -108,7 +64,7 @@ export default function Login() {
           <Buttons>
             <button 
               className="google" 
-              onClick={signInWithGoogle}
+              onClick={() => handleLogin('google')}
             >
               <img src={googleIcon} alt="Google" />
               Entrar com o Google
@@ -116,7 +72,7 @@ export default function Login() {
 
             <button 
               className="twitter"
-              onClick={signInWithTwitter}
+              onClick={() => handleLogin('twitter')}
             >
               <img src={twitterIcon} alt="Twitter" /> 
               Entrar com o Twitter

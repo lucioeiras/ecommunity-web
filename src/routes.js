@@ -1,22 +1,37 @@
-import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
-// Importação dos componentes das páginas
+import { AuthContext } from './contexts/Auth'
+
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Write from './pages/Write'
 import Building from './pages/Building'
 
-// Componente que controla a rotas da aplicação
+function CustomRoute({ isPrivate, ...rest }) {
+  const { loading, authenticated } = useContext(AuthContext);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isPrivate && !authenticated) {
+    return <Redirect to="/login" />
+  }
+
+  return <Route {...rest} />;
+}
+
 export default function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Landing} />
-      <Route path="/login" component={Login} />
-      <Route path="/dashboard/" component={Dashboard} />
-      <Route path="/write" component={Write} />
       <Route path="/building" component={Building} />
+      
+      <CustomRoute path="/login" component={Login} />
+      <CustomRoute isPrivate path="/dashboard/" component={Dashboard} />
+      <CustomRoute isPrivate path="/write" component={Write} />
     </BrowserRouter>
   )
 }
