@@ -6,8 +6,8 @@ const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const {
-    authenticated, 
     loading, 
+    authenticated, 
     handleSignInWithGoogle, 
     handleSignInWithTwitter, 
   } = useAuth();

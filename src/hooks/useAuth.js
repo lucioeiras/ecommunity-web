@@ -6,8 +6,8 @@ import firebase from 'firebase/app'
 
 export default function useAuth() {
   const auth = firebase.auth()
-  const firestore = firebase.firestore()
 
+  const firestore = firebase.firestore()
   const usersRef = firestore.collection('users')
 
   const [authenticated, setAuthenticated] = useState(false)
@@ -73,8 +73,8 @@ export default function useAuth() {
   }
   
   return { 
-    authenticated, 
     loading, 
+    authenticated, 
     handleSignInWithGoogle, 
     handleSignInWithTwitter,
   }
