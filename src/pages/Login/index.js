@@ -19,18 +19,17 @@ import {
 import { useEffect } from 'react'
 
 export default function Login() {
-  const { 
-    handleSignInWithGoogle, 
-    handleSignInWithTwitter 
-  } = useContext(AuthContext)
+  const { handleSignIn } = useContext(AuthContext)
 
   const history = useHistory()
 
-  async function handleLogin(provider) {
-    provider === 'google' 
-      ? await handleSignInWithGoogle() 
-      : await handleSignInWithTwitter()
+  async function handleSignInWithGoogle() {
+    await handleSignIn('google')
+    history.push('/dashboard')
+  }
 
+  async function handleSignInWithTwitter() {
+    await handleSignIn('twitter')
     history.push('/dashboard')
   }
 
@@ -64,7 +63,7 @@ export default function Login() {
           <Buttons>
             <button 
               className="google" 
-              onClick={() => handleLogin('google')}
+              onClick={handleSignInWithGoogle}
             >
               <img src={googleIcon} alt="Google" />
               Entrar com o Google
@@ -72,7 +71,7 @@ export default function Login() {
 
             <button 
               className="twitter"
-              onClick={() => handleLogin('twitter')}
+              onClick={handleSignInWithTwitter}
             >
               <img src={twitterIcon} alt="Twitter" /> 
               Entrar com o Twitter

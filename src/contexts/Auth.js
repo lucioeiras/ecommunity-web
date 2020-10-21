@@ -8,8 +8,7 @@ function AuthProvider({ children }) {
   const {
     loading, 
     authenticated, 
-    handleSignInWithGoogle, 
-    handleSignInWithTwitter, 
+    handleSignIn, 
   } = useAuth();
 
   return (
@@ -17,8 +16,7 @@ function AuthProvider({ children }) {
       value={{ 
         loading, 
         authenticated, 
-        handleSignInWithGoogle, 
-        handleSignInWithTwitter, 
+        handleSignIn,  
       }}
     >
       {children}

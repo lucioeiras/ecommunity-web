@@ -41,9 +41,14 @@ export default function useAuth() {
   }
 
   async function authenticateUser(service) {
-    const provider = service === 'google' 
-      ? new firebase.auth.GoogleAuthProvider()
-      : new firebase.auth.TwitterAuthProvider()
+    let provider
+
+    if (service === 'google') {
+      new firebase.auth.GoogleAuthProvider()
+      
+    } else if(service === 'twitter') {
+      new firebase.auth.TwitterAuthProvider()
+    }
 
     await auth.signInWithPopup(provider)
 
@@ -54,17 +59,8 @@ export default function useAuth() {
     return auth.currentUser.uid
   }
   
-  async function handleSignInWithGoogle() {
-    const user_id = await authenticateUser('google')
-
-    if (user_id) {
-      setAuthenticated(true)
-      localStorage.setItem('user_id', user_id)
-    }
-  }
-
-  async function handleSignInWithTwitter() {
-    const user_id = await authenticateUser('twitter')
+  async function handleSignIn(service) {
+    const user_id = await authenticateUser(service)
 
     if (user_id) {
       setAuthenticated(true)
@@ -75,7 +71,6 @@ export default function useAuth() {
   return { 
     loading, 
     authenticated, 
-    handleSignInWithGoogle, 
-    handleSignInWithTwitter,
+    handleSignIn, 
   }
 }
