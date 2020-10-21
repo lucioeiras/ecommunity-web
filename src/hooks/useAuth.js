@@ -52,8 +52,10 @@ export default function useAuth() {
 
     await auth.signInWithPopup(provider)
 
-    if (!findIfUserExists()) {
-      registerUser()
+    const searchedUser = await findIfUserExists()
+
+    if (!searchedUser) {
+      await registerUser()
     }
 
     return auth.currentUser.uid
