@@ -44,10 +44,10 @@ export default function useAuth() {
     let provider
 
     if (service === 'google') {
-      new firebase.auth.GoogleAuthProvider()
+      provider = new firebase.auth.GoogleAuthProvider()
       
     } else if(service === 'twitter') {
-      new firebase.auth.TwitterAuthProvider()
+      provider = new firebase.auth.TwitterAuthProvider()
     }
 
     await auth.signInWithPopup(provider)
