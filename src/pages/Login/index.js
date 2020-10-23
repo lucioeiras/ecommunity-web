@@ -56,7 +56,7 @@ export default function Login() {
         <Presentation>
           <h1>Bem vindo</h1>
           <p>
-            Entre com a sua conta do Google ou Facebook 
+            Entre com a sua conta do Google ou Twitter 
             e comece a escrever
           </p>
 
