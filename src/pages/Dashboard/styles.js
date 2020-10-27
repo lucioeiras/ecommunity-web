@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 // Container por volta da página
 export const Container = styled.div`
   width: 100%;
-  max-width: 1148px;
+  max-width: 1100px;
 
-  padding: 48px;
+  padding: 48px 0;
 `
 
 // Container por volta do conteúdo da página
@@ -30,8 +30,8 @@ export const Content = styled.div`
 
 // Lista de posts do usuário
 export const PostList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 
   margin-top: 24px;  
 `
@@ -58,7 +58,6 @@ export const Post = styled(Link)`
   text-decoration: none;
 
   padding: 16px;
-  margin: 0 16px 16px 0;
 
   transition: 0.3s;
 

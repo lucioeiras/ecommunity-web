@@ -6,14 +6,14 @@ import phoneImg from '../../assets/phone.png'
 // Container por volta da página
 export const Container = styled.div`
   width: 100%;
-  max-width: 1148px;
+  max-width: 1100px;
 
   height: 100vh;
 
   background: url(${phoneImg}) no-repeat right 175px;
   background-size: 34%;
 
-  padding: 48px;
+  padding: 48px 0;
 `
 
 // Cabeçalho com CTA e Tabs

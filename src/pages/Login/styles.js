@@ -5,14 +5,14 @@ import notebookImg from '../../assets/notebook.png'
 // Container por volta da página
 export const Container = styled.div`
   width: 100%;
-  max-width: 1148px;
+  max-width: 1100px;
 
   height: 100vh;
 
   background: url(${notebookImg}) no-repeat right 50%;
   background-size: 60%;
 
-  padding: 48px;
+  padding: 48px 0;
 `
 
 // Container por volta do conteúdo da página
@@ -20,7 +20,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin-top: 64px;
+  margin-top: 96px;
 `
 
 // Textos de bem-vindo

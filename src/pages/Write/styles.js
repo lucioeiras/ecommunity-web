@@ -3,9 +3,9 @@ import styled from 'styled-components'
 // Container por volta da página
 export const Container = styled.div`
   width: 100%;
-  max-width: 1148px;
+  max-width: 1100px;
 
-  padding: 48px;
+  padding: 48px 0;
 
   > h1 {
     display: flex;
