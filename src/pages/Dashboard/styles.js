@@ -32,6 +32,7 @@ export const Content = styled.div`
 export const PostList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
 
   margin-top: 24px;  
 `
@@ -40,8 +41,7 @@ export const PostList = styled.div`
 export const Post = styled(Link)`
   cursor: pointer;
 
-  width: 260px;
-  height: 260px;
+  height: 263px;
 
   display: flex;
   align-items: flex-end;
