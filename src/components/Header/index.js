@@ -30,12 +30,9 @@ export default function Header({ isLanding, tabs, button, user_id }) {
           ? <img src={logo} alt="E-Community" />
           : (
             user && (
-              <Profile to="/building">
+              <Profile>
                 <img src={user.avatar} alt={user.name} />
-                <h3>
-                  {user.name}
-                  <span>Clique para ver seu perfil</span>
-                </h3>
+                <h3>{user.name}</h3>
               </Profile>
             )
           )

@@ -9,13 +9,9 @@ export const Container = styled.header`
 `
 
 // Avatar/nome do usuário
-export const Profile = styled(Link)`
-  cursor: pointer;
-
+export const Profile = styled.div`
   display: flex;
   align-items: center;
-
-  text-decoration: none;
 
   > img {
     width: 48px;
@@ -33,14 +29,6 @@ export const Profile = styled(Link)`
     flex-direction: column;
 
     margin-left: 16px;
-
-    > span {
-      color: #A8A8B3;
-      font-size: 12px;
-      font-weight: normal;
-
-      margin-top: 4px;
-    }
   }
 `
 
