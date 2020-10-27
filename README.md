@@ -4,7 +4,7 @@
 
 <h1 align="center">💡 Ecommunity</h1>
 
-<h3 align="center">Compartilhe o seu conhecimento sobre eletrônica</h3>
+<h3 align="center">Versão WEB</h3>
 
 <p align="center">
   <a href="#techs">Sobre</a> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
