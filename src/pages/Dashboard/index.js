@@ -46,7 +46,7 @@ export default function Dashboard() {
         <Header
           isLanding={false}
           user_id={user_id}
-          button={{ name: 'Escrever', link: `/write/?user=${user_id}`}}
+          button={{ name: 'Escrever', link: `/write`}}
           tabs={[
             { name: 'Página Inicial', link: '/' },
             { name: 'Relatar um problema', link: '/building' }
