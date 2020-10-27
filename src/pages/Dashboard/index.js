@@ -63,7 +63,7 @@ export default function Dashboard() {
                   <Post 
                     key={post.uid} 
                     background={post.thumbURL}
-                    to={`/write/?user=${user_id}&post=${post.uid}`}
+                    to={`/write/?post=${post.uid}`}
                   >
                     <h2>{post.title}</h2>
                   </Post>
