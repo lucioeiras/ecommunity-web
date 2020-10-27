@@ -1,26 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect } from 'react'
-import firebase from 'firebase/app'
 import { Link } from 'react-router-dom'
+
+import { getUserWithId } from '../../firebase/users'
 
 import logo from '../../assets/logo.svg'
 
 import { Container, Profile, Tabs, CTA } from './styles'
 
 export default function Header({ isLanding, tabs, button, user_id }) {
-
-  // Inicializa as funções do Firebase
-  const firestore = firebase.firestore()
-
-  // Inicia os estados
   const [user, setUser] = useState()
 
-  // Busca a coleção de usuários no Firestore
-  const usersRef = firestore.collection('users')
-
   useEffect(() => {
-    user_id && usersRef.doc(user_id).get().then(doc => setUser(doc.data()))
+    user_id && getUserWithId(user_id).then(user => setUser(user))
   }, [])
 
   return (

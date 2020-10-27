@@ -22,8 +22,8 @@ export const Profile = styled.div`
 
   > h3 {
     color: #41414D;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 500;
 
     display: flex;
     flex-direction: column;

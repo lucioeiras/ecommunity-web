@@ -15,7 +15,7 @@ export const Content = styled.div`
 
   > h1 {
     color: #3a3a3a;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
   }
 

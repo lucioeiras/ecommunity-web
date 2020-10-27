@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect } from 'react'
-
-import filesize from 'filesize'
-import firebase from 'firebase/app'
-
-import { v4 } from 'uuid'
 import { useHistory } from 'react-router-dom'
+import filesize from 'filesize'
+
+import { savePost, updatePost, getPostWithId } from '../../firebase/posts'
 
 import useQuery from '../../hooks/useQuery'
 
@@ -29,12 +27,7 @@ export default function Write({ location }) {
   const user_id = localStorage.getItem('user_id')
   const post_id = useQuery(location.search, 'post')
 
-  const firestore = firebase.firestore()
-  const storage = firebase.storage()
-
-  const postsRef = firestore.collection('posts')
-
-  const [editedPost, setEditedPost] = useState(null)
+  const [editedPost, setEditedPost] = useState()
 
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
@@ -83,54 +76,26 @@ export default function Write({ location }) {
   async function handleSave(e) {
     e.preventDefault()
 
-    await postsRef.doc(post_id).set({
-      ...editedPost,
+    await updatePost({
+      post: editedPost,
       title,
       text,
+      links,
     })
 
     history.goBack()
   }
 
-  async function getFilesURL() {
-    const filesURL = uploadedFiles.map(async file => {
-      const fileRef = storage.ref(`files/${file.name}`)
-      await fileRef.put(file.file)
-        
-      const fileURL = await fileRef.getDownloadURL()
-    
-      return fileURL
-    })
-
-    return Promise.all(filesURL)
-  }
-
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const thumbRef = storage.ref(`thumbs/${thumb.name}`)
-    await thumbRef.put(thumb.file)
-
-    const thumbURL = await thumbRef.getDownloadURL()
-
-    const uid = v4()
-    const filesURL = await getFilesURL()
-
-    await postsRef.doc(uid).set({
-      uid,
-      user_id,
-
+    await savePost({
+      thumb,
+      userID: user_id,
       title,
       text,
       links,
-
-      thumb: `thumbs/${thumb.name}`,
-      thumbURL,
-
-      files: uploadedFiles?.map(file => `files/${file.name}`),
-      filesURL,
-
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      files: uploadedFiles,
     })
 
     history.goBack()
@@ -138,14 +103,13 @@ export default function Write({ location }) {
 
   useEffect(() => {
     if (post_id) {
-      postsRef.doc(post_id).get().then(doc => {
-        const post = doc.data()
-
+      getPostWithId(post_id).then(post => {
         setEditedPost(post)
+
         setTitle(post.title)
         setText(post.text)
         post.links && setLinks(post.links)
-      })
+      }) 
     }
   }, [])
 

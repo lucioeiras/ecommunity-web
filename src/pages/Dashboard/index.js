@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import firebase from 'firebase/app'
+import { getUserPosts } from '../../firebase/posts'
 
 import Header from '../../components/Header'
 
@@ -18,25 +18,8 @@ export default function Dashboard() {
 
   const [posts, setPosts] = useState([])
 
-  const firestore = firebase.firestore()
-  const postsRef = firestore.collection('posts')
-
-  function loadPosts() {
-    postsRef
-      .where('user_id', '==', user_id)
-      .orderBy('createdAt')
-      .get()
-      .then(querySnapshot => {
-        const searchedPosts = []
-
-        querySnapshot.forEach(doc => searchedPosts.push(doc.data()))
-
-        setPosts(searchedPosts)
-      })
-  }
-
   useEffect(() => {
-    loadPosts()
+    getUserPosts(user_id).then(userPosts => setPosts(userPosts))
   }, [])
 
   return (
